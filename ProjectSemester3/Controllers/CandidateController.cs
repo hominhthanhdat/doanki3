@@ -5,13 +5,13 @@ using System.Diagnostics;
 
 namespace ProjectSemester3.Controllers
 {
-    [Route("api/career")]
-    public class CareerController : Controller
+    [Route("api/candidate")]
+    public class CandidateController : Controller
     {
-        private CareerService careerSer;
-        public CareerController(CareerService careerService)
+        private CandidateService candidateSer;
+        public CandidateController(CandidateService candidateService)
         {
-            careerSer = careerService;
+            candidateSer = candidateService;
         }
 
         [HttpGet("getAll")]
@@ -19,7 +19,7 @@ namespace ProjectSemester3.Controllers
         public IActionResult GetAll()
         {
 
-            return Ok(careerSer.GetAll());
+            return Ok(candidateSer.GetAll());
 
         }
         [HttpGet("getByID/{id}")]
@@ -27,18 +27,18 @@ namespace ProjectSemester3.Controllers
         public IActionResult GetById(int id)
         {
 
-            return Ok(careerSer.GetById(id));
+            return Ok(candidateSer.GetById(id));
 
         }
 
         [HttpPost("add")]
         [Consumes("application/json")]
         [Produces("application/json")]
-        public IActionResult Add([FromBody] Career career)
+        public IActionResult Add([FromBody] Candidate candidate)
         {
             try
             {
-                return Ok(careerSer.Add(career));
+                return Ok(candidateSer.Add(candidate));
             }
             catch
             {
@@ -48,30 +48,17 @@ namespace ProjectSemester3.Controllers
         [HttpPut("edit")]
         [Consumes("application/json")]
         [Produces("application/json")]
-        public IActionResult Edit([FromBody] Career career)
+        public IActionResult Edit([FromBody] Candidate candidate)
         {
             try
             {
-                return Ok(careerSer.Edit(career));
+                return Ok(candidateSer.Edit(candidate));
             }
             catch
             {
                 return BadRequest();
             }
         }
-        [HttpDelete("delete/{careerId}")]
-        [Consumes("application/json")]
-        [Produces("application/json")]
-        public IActionResult Delete(int careerID)
-        {
-            try
-            {
-                return Ok(careerSer.Delete(careerID));
-            }
-            catch
-            {
-                return BadRequest();
-            }
-        }
+        
     }
 }

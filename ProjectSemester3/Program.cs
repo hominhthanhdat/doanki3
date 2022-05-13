@@ -2,6 +2,8 @@
 using ProjectSemester3;
 using ProjectSemester3.Models;
 using ProjectSemester3.Services;
+//using ProjectSemester3.Models;
+//using ProjectSemester3.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,8 +16,9 @@ builder.Services.AddControllers().AddJsonOptions(option =>
 {
     option.JsonSerializerOptions.Converters.Add(new DateConverter());
 });
-
+builder.Services.AddScoped<CandidateService, CandidateServiceImpl>();
 builder.Services.AddScoped<CareerService, CareerServiceImpl>();
+builder.Services.AddScoped<TestimonialService, TestimonialServiceImpl>();
 
 //mapping db vào file databaseContext
 var connString = builder.Configuration["ConnectionStrings:DefaultConnection"];
